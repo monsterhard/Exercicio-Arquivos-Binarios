@@ -1,0 +1,62 @@
+# Exercicio-Arquivos-Binarios
+
+           //Escrita do arquivo
+
+#include<stdio.h>
+
+int main(){
+
+    int vetor[] = {36,45,67,88,98,45,33};
+    FILE *arq;
+    int result=0;
+    int i=0;
+
+    arq = fopen("arqTeste1.dat", "wb"); //Cria Arquivo binario para gravação
+
+    if(arq == NULL){
+        printf("Erro ao gravar!!");
+        return;
+    }
+
+   result = fwrite(&vetor[0], sizeof(int),7,arq);
+
+    printf("GRAVADO(S) %d NUMERO(S)",result);
+    fclose(arq);
+
+    return 0;
+
+}
+
+              // Leitura do arquivo
+
+#include<stdio.h>
+
+int main(){
+
+    int vetor[7];
+    FILE *arq;
+    int i=0;
+    int result;
+
+
+    arq = fopen("arqTeste1.dat", "rb");
+
+     if (arq == NULL)  // Se houve erro na abertura
+    {
+     printf("Problemas na abertura do arquivo\n");
+     return;
+    }
+
+    result = fread(&vetor[0],sizeof(int),7,arq);
+    printf("LIDOS: ");
+
+     for(i=0;i < result; i++){
+
+        printf("%d ",vetor[i]);
+      }
+
+      fclose(arq);
+}
+
+
+
